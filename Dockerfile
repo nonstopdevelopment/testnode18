@@ -1,7 +1,10 @@
-FROM node:18
-WORKDIR /app
-COPY package.json /app
+FROM ubi8/nodejs-18
+
+# Add application sources
+ADD app-src .
+
+# Install the dependencies
 RUN npm install
-COPY . /app
-EXPOSE 3000
-CMD ["node","index.js"]
+
+# Run script uses standard ways to run the application
+CMD npm run -d start
